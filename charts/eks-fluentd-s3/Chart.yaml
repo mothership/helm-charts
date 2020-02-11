@@ -1,4 +1,4 @@
-apiVersion: v2
+apiVersion: v1
 name: eks-fluentd-s3
 description: A Helm chart for fluentd on EKS 
 
