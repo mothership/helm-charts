@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  eks-fluentd-s3:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2020-02-11T22:56:27.772177437Z"
+    description: A Helm chart for fluentd on EKS
+    digest: e437ee9c0eab37853206c7f8b0193be5d79b159c0ff77c0b2a023ee12c268236
+    name: eks-fluentd-s3
+    urls:
+    - https://github.com/mothershipper/eks-fluentd-s3-chart/releases/download/eks-fluentd-s3-0.1.1/eks-fluentd-s3-0.1.1.tgz
+    version: 0.1.1
+generated: "2020-02-11T22:56:27.676763035Z"
