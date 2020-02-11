@@ -1,0 +1,16 @@
+s3:
+  bucketName: debug
+  bucketPrefix: ''
+  region: us-west-2
+  roleSessionName: 'eks-fluentd-s3'
+  roleArn: ''
+prometheus:
+  bind: '0.0.0.0'
+  port: '24231'
+  path: '/metrics'
+k8s:
+  parser_type: 'json'
+  api_url: ''
+  verify_ssl: 'true'
+  ca_file: ''
+fluent_image: 'gomothership/eks-fluentd-s3:latest'
