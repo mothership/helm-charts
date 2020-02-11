@@ -1,27 +1,27 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: {{ template "eks-fluentd-s3-chart.fullname" . }}
+  name: {{ template "eks-fluentd-s3.fullname" . }}
   labels:
-    k8s-app: {{ template "eks-fluentd-s3-chart.fullname" . }}
-    chart: {{ template "eks-fluentd-s3-chart.chart" . }} 
+    k8s-app: {{ template "eks-fluentd-s3.fullname" . }}
+    chart: {{ template "eks-fluentd-s3.chart" . }} 
 spec:
   template:
     metadata:
       labels:
-        app: {{ template "eks-fluentd-s3-chart.fullname" . }}
+        app: {{ template "eks-fluentd-s3.fullname" . }}
     spec:
-      serviceAccountName: {{ template "eks-fluentd-s3-chart.fullname" . }}
+      serviceAccountName: {{ template "eks-fluentd-s3.fullname" . }}
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: {{ template "eks-fluentd-s3-chart.fullname" . }}
+      - name: {{ template "eks-fluentd-s3.fullname" . }}
         image: {{ .Values.fluent_image }} 
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-            name: {{ template "eks-fluentd-s3-chart.fullname" . }}
+            name: {{ template "eks-fluentd-s3.fullname" . }}
         args:
         - --use-v1-config
         resources:
