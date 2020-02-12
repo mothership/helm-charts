@@ -5,11 +5,11 @@ metadata:
   labels:
     chart: {{ template "eks-fluentd-s3.chart" . }} 
 data:
-  S3_BUCKET_NAME: "{{ .Values.s3.bucketName }}"
-  S3_BUCKET_PREFIX: "{{ .Values.s3.bucketPrefix }}"
+  S3_BUCKET_NAME: "{{ .Values.s3.bucket_name }}"
+  S3_BUCKET_PREFIX: "{{ .Values.s3.bucket_prefix }}"
   S3_BUCKET_REGION: "{{ .Values.s3.region }}"
   # EKS provides the token file & role ARN from the service account
-  AWS_ROLE_SESSION_NAME: "{{ .Values.s3.roleSessionName }}"
+  AWS_ROLE_SESSION_NAME: "{{ .Values.s3.role_session_name }}"
   FLUENTD_PROMETHEUS_BIND: "{{ .Values.prometheus.bind }}"
   FLUENTD_PROMETHEUS_PORT: "{{ .Values.prometheus.port }}"
   FLUENTD_PROMETHEUS_PATH: "{{ .Values.prometheus.path }}"

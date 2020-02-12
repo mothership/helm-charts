@@ -1,9 +1,9 @@
 s3:
-  bucketName: debug
-  bucketPrefix: ''
+  bucket_name: debug
+  bucket_prefix: ''
   region: us-west-2
-  roleSessionName: 'eks-fluentd-s3'
-  roleArn: ''
+  role_session_name: 'eks-fluentd-s3'
+  role_arn: ''
 prometheus:
   bind: '0.0.0.0'
   port: '24231'
