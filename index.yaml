@@ -3,6 +3,15 @@ entries:
   eks-fluentd-s3:
   - apiVersion: v1
     appVersion: 0.0.1
+    created: "2020-02-24T19:24:10.438186476Z"
+    description: A Helm chart for fluentd on EKS
+    digest: a46154afdd80d51f3582be2f83469e44716249acef5103deaf25f3e411a79d43
+    name: eks-fluentd-s3
+    urls:
+    - https://github.com/mothership/helm-charts/releases/download/eks-fluentd-s3-0.1.4/eks-fluentd-s3-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v1
+    appVersion: 0.0.1
     created: "2020-02-12T01:24:13.17260094Z"
     description: A Helm chart for fluentd on EKS
     digest: f33b2fe889cddaa23591699f059e227735c72dce259d2766617e96e155d29f6c
