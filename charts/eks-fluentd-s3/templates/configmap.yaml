@@ -2,8 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ template "eks-fluentd-s3.fullname" . }} 
-  labels:
-    chart: {{ template "eks-fluentd-s3.chart" . }} 
+  labels: {{ include "eks-fluentd-s3.labels" . | nindent 4 }}
 data:
   S3_BUCKET_NAME: "{{ .Values.s3.bucket_name }}"
   S3_BUCKET_PREFIX: "{{ .Values.s3.bucket_prefix }}"

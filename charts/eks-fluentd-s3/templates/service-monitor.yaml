@@ -1,0 +1,25 @@
+{{- if .Values.prometheus.service_monitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ template "eks-fluentd-s3.fullname" . }}
+  {{- with .Values.prometheus.service_monitor.namespace }}
+  namespace: {{ . }}
+  {{- end }}
+  labels: {{ include "eks-fluentd-s3.labels" . | nindent 4 }}
+spec:
+  podMetricsEndpoints:
+    - port: metrics
+      path: {{ .Values.prometheus.path }}
+      {{- with .Values.prometheus.service_monitor.interval }}
+      interval: {{ . }}
+      {{- end }}
+      {{- with .Values.prometheus.service_monitor.scrape_timeout }}
+      scrapeTimeout: {{ . }}
+      {{- end }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+  selector:
+    matchLabels: {{ include "eks-fluentd-s3.selectorLabels" . | nindent 6 }}
+{{- end }}
