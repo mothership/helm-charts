@@ -8,6 +8,11 @@ prometheus:
   bind: '0.0.0.0'
   port: '24231'
   path: '/metrics'
+  service_monitor:
+    enabled: false
+    interval: 10s
+    scrape_timeout: 6s
+    namespace: prometheus
 k8s:
   parser_type: 'json'
   api_url: ''

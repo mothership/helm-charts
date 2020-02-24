@@ -1,15 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ template "eks-fluentd-s3.fullname" . }}
-  labels:
-    k8s-app: {{ template "eks-fluentd-s3.fullname" . }}
-    chart: {{ template "eks-fluentd-s3.chart" . }} 
+  labels: {{ include "eks-fluentd-s3.labels" . | nindent 4 }}
 spec:
+  selector:
+    matchLabels: {{ include "eks-fluentd-s3.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      labels:
-        app: {{ template "eks-fluentd-s3.fullname" . }}
+      labels: {{ include "eks-fluentd-s3.labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ template "eks-fluentd-s3.fullname" . }}
       tolerations:
@@ -24,6 +23,9 @@ spec:
             name: {{ template "eks-fluentd-s3.fullname" . }}
         args:
         - --use-v1-config
+        ports:
+        - name: metrics
+          containerPort: {{ .Values.prometheus.port }}
         resources:
           limits:
             memory: 200Mi
