@@ -19,3 +19,4 @@ k8s:
   verify_ssl: 'true'
   ca_file: ''
 fluent_image: 'gomothership/eks-fluentd-s3:latest'
+tolerations: []

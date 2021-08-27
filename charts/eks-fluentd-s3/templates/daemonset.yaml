@@ -14,6 +14,9 @@ spec:
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
+{{- if .Values.tolerations }}
+{{ . | toYaml | indent 8 }}
+{{- end }}
       containers:
       - name: {{ template "eks-fluentd-s3.fullname" . }}
         image: {{ .Values.fluent_image }} 
