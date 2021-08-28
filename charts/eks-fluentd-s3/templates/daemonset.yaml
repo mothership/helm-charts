@@ -15,7 +15,7 @@ spec:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
 {{- if .Values.tolerations }}
-{{ . | toYaml | indent 6 }}
+{{ .Values.tolerations | toYaml | indent 6 }}
 {{- end }}
       containers:
       - name: {{ template "eks-fluentd-s3.fullname" . }}
