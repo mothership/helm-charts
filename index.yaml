@@ -70,6 +70,26 @@ entries:
   rds-auth-proxy:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2021-09-22T19:04:59.56801113Z"
+    description: A two-layer proxy for connecting into RDS postgres databases based
+      on IAM authentication.
+    digest: 7d961c85d836a93fbf76fe636361dd293cebe1d49db707aab677e79ae657601b
+    home: https://github.com/mothership/rds-auth-proxy
+    keywords:
+    - rds
+    - proxy
+    - IAM Authentication
+    - postgres
+    maintainers:
+    - name: mothershipper
+      url: https://github.com/mothership/rds-auth-proxy/issues
+    name: rds-auth-proxy
+    type: application
+    urls:
+    - https://github.com/mothership/helm-charts/releases/download/rds-auth-proxy-0.0.2/rds-auth-proxy-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2021-09-22T04:46:16.280530385Z"
     description: A two-layer proxy for connecting into RDS postgres databases based
       on IAM authentication.
@@ -88,4 +108,4 @@ entries:
     urls:
     - https://github.com/mothership/helm-charts/releases/download/rds-auth-proxy-0.0.1/rds-auth-proxy-0.0.1.tgz
     version: 0.0.1
-generated: "2021-09-22T04:46:16.280552487Z"
+generated: "2021-09-22T19:04:59.568079636Z"
