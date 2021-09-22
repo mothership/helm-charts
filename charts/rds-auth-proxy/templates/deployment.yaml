@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.fullname" . }}
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "app.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.deployment.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ include "app.fullname" . }} 
+    {{- else if .Values.serviceAccountName }}
+      serviceAccountName: {{ .Values.serviceAccountName }} 
+    {{- end }}
+      securityContext:
+        {{- toYaml .Values.deployment.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          command: ["/bin/rds-proxy"]
+          args: ["cluster", "--configfile", "/etc/config/config.yaml"]
+          securityContext:
+            {{- toYaml .Values.deployment.securityContext | nindent 12 }}
+          image: {{ .Values.deployment.image.repository }}
+          imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+          ports:
+            - name: postgres 
+              containerPort: 8000 
+              protocol: TCP
+          volumeMounts:
+            - name: config
+              mountPath: /etc/config
+            {{- if .Values.proxy.certManager.enabled }}
+            - mountPath: /client-tls
+              name: client-cert
+              readOnly: true
+            {{- if .Values.proxy.ssl.enabled }}
+            - mountPath: /server-tls
+              name: server-cert
+              readOnly: true
+              {{- end }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.deployment.resources | nindent 12 }}
+      {{- with .Values.deployment.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.deployment.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.deployment.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+      - name: config
+        configMap:
+          name: {{ include "app.fullname" . }}
+    {{- if .Values.proxy.certManager.enabled }}
+      - name: client-cert 
+        secret:
+          defaultMode: 420
+          secretName: {{ include "app.clientCertName" . }} 
+      {{- if .Values.proxy.ssl.enabled }}
+      - name: server-cert
+        secret:
+          defaultMode: 420
+          secretName: {{ include "app.serverCertName" . }} 
+      {{- end }}
+    {{- end }}

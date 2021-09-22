@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "app.fullname" . }}
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+data:
+  config.yaml: |-
+    proxy:
+      ##
+      # SSL Config
+      #
+      # The SSL config for the proxy itself. SSL for individual 
+      # hosts/targets is defined below
+      ssl: 
+        enabled: {{ .Values.proxy.ssl.enabled }}
+      {{- if .Values.proxy.certManager.enabled }}
+      {{- if .Values.proxy.ssl.enabled -}}
+        certificate: /server-tls/cert.pem 
+        private_key: /server-tls/key.pem 
+        {{- end }}
+        client_certificate: /client-tls/client_cert.pem
+        client_private_key: /client-tls/client_private_key.pem 
+      {{ else }}
+        {{- if .Values.proxy.ssl.enabled -}}
+        certificate: {{ .Values.proxy.ssl.certificatePath }}
+        private_key: {{ .Values.proxy.ssl.keyPath }}
+        {{- end }}
+        client_certificate: {{ .Values.proxy.ssl.clientCertificatePath }}
+        client_private_key: {{ .Values.proxy.ssl.clientPrivateKeyPath }}
+      {{- end }}
+      ##
+      # Target ACL
+      #
+      # Configure allowed or RDS instances.
+      target_acl:
+        allowed_rds_tags: {{ .Values.proxy.allowedRDSTags | toYaml | nindent 10 }}
+        blocked_rds_tags: {{ .Values.proxy.blockedRDSTags | toYaml | nindent 10 }}
+    ## 
+    # Target configuration
+    #
+    # This is where you can specify SSL settings for the upstream
+    # databases that aren't RDS databases, like self-hosted 
+    # postgres instances.
+    targets: {{ .Values.proxy.targets | toYaml | nindent 8 }}

@@ -1,0 +1,36 @@
+{{- if .Values.proxy.certManager.enabled }}
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: {{ include "app.clientCertName" . }}
+spec:
+  dnsNames:
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterName }}
+  issuerRef:
+    kind: Issuer
+    name: {{ include "app.fullname" . }}
+  secretName: {{ include "app.clientCertName" . }} 
+---
+{{ if .Values.proxy.ssl.enabled }}
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: {{ include "app.serverCertName" . }}
+spec:
+  dnsNames:
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.{{.Values.clusterName}}
+  issuerRef:
+    kind: Issuer
+    name: {{ include "app.fullname" . }}
+  secretName: {{ include "app.serverCertName" . }} 
+---
+{{- end }}
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: {{ include "app.fullname" . }}
+spec:
+  selfSigned: {}
+{{- end }}

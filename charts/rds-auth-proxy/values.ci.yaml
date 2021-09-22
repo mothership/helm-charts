@@ -1,0 +1,27 @@
+fullnameOverride: "rds-auth-proxy"
+
+deployment:
+  replicaCount: 2 
+  image:
+    # example pulling private image
+    repository: gomothership/rds-proxy:dev 
+    pullPolicy: IfNotPresent
+
+
+  securityContext: 
+    readOnlyRootFilesystem: true
+
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::1230123456789:role/test-rds-proxy 
+
+proxy:
+  ssl:
+    enabled: false 
+  certManager:
+    enabled: true
+  allowedRDSTags:
+    - name: "rds_proxy_enabled"
+      value: "true"
+
