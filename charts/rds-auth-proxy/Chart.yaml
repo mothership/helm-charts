@@ -1,5 +1,5 @@
 apiVersion: v2
-name: rds-auth-proxy 
+name: rds-auth-proxy
 description: A two-layer proxy for connecting into RDS postgres databases based on IAM authentication.
 keywords:
   - rds
@@ -8,8 +8,8 @@ keywords:
   - postgres
 
 home: https://github.com/mothership/rds-auth-proxy
-maintainers: 
-  - name: Jack Wink 
+maintainers:
+  - name: Jack Wink
     url: https://github.com/mothership/rds-auth-proxy/issues
 type: application
 
