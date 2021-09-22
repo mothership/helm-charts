@@ -65,7 +65,7 @@ proxy:
   # hosts/targets is defined below
   ssl:
     # -- If true, the proxy will enable clients to use SSL when connecting to it
-    enabled: true
+    enabled: false 
     # -- Path in the container to the proxy's SSL certificate, if proxy.certManager.enabled is true, this is ignored.
     certificatePath: ""
     # -- Path in the container to the proxy's SSL private key, if proxy.certManager.enabled is true, this is ignored.
@@ -82,7 +82,7 @@ proxy:
     # -- If true, creates client SSL certificates using certManager. Client certificates are 
     # used in the sessions with RDS instances. If proxy.ssl.enabled is also true, this will 
     # issue a self-signed certificate for communication between clients and the proxy server. 
-    enabled: true
+    enabled: false 
 
   # -- Tags used to filter RDS instances. If empty, all RDS postgres instances are allowed to connect
   # through the proxy unless otherwise blocked.  If multiple tags are set, allowed tags must be on 
