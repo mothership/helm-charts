@@ -58,6 +58,8 @@ serviceAccount:
   # -- Annotations for the service-account - this can be used for IRSA
   # auth to AWS
   annotations: {}
+  # -- List of image pull secrets for the service account
+  imagePullSecrets: []
 
 # -- Settings for the proxy itself
 proxy:

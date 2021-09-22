@@ -148,6 +148,12 @@
                        "type": "string"
                     }
                 },
+                "imagePullSecrets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "create": {
                     "type": "boolean"
                 }
