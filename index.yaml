@@ -67,4 +67,25 @@ entries:
     urls:
     - https://github.com/mothershipper/eks-fluentd-s3-chart/releases/download/eks-fluentd-s3-0.1.1/eks-fluentd-s3-0.1.1.tgz
     version: 0.1.1
-generated: "2021-08-28T00:00:28.967872435Z"
+  rds-auth-proxy:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-09-22T04:46:16.280530385Z"
+    description: A two-layer proxy for connecting into RDS postgres databases based
+      on IAM authentication.
+    digest: 0d1d920c02f6cb532f63fc96c52302a7c27a58c2e460b225d49df2381598e229
+    home: https://github.com/mothership/rds-auth-proxy
+    keywords:
+    - rds
+    - proxy
+    - IAM Authentication
+    - postgres
+    maintainers:
+    - name: mothershipper
+      url: https://github.com/mothership/rds-auth-proxy/issues
+    name: rds-auth-proxy
+    type: application
+    urls:
+    - https://github.com/mothership/helm-charts/releases/download/rds-auth-proxy-0.0.1/rds-auth-proxy-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-09-22T04:46:16.280552487Z"
