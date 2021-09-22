@@ -1,23 +1,23 @@
 nameOverride: ""
 fullnameOverride: ""
 
-# -- Deployment resource settings 
+# -- Deployment resource settings
 deployment:
   # -- Number of pods to run
   replicaCount: 1
   image:
-    # -- If you want to bundle your own proxy distribution, you can change the image/tag 
+    # -- If you want to bundle your own proxy distribution, you can change the image/tag
     repository: ghcr.io/mothership/rds-auth-proxy:0.0.1
-    # -- Image pull policy for the proxy 
+    # -- Image pull policy for the proxy
     pullPolicy: IfNotPresent
-    # -- Image pull policy for the proxy deployment 
+    # -- Image pull policy for the proxy deployment
     pullSecrets: []
 
-  # -- Pod security context 
+  # -- Pod security context
   podSecurityContext: {}
   # fsGroup: 2000
 
-  # -- Container security context for the proxy 
+  # -- Container security context for the proxy
   securityContext: {}
   # capabilities:
   #   drop:
@@ -26,7 +26,7 @@ deployment:
   # runAsNonRoot: true
   # runAsUser: 1000
 
-  # -- Resources for the proxy deployment 
+  # -- Resources for the proxy deployment
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -38,68 +38,67 @@ deployment:
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
-  
+
   # -- Node selector, if you want to deploy it to a particular node group
   nodeSelector: {}
 
-  # -- Tolerations for the proxy deployment 
+  # -- Tolerations for the proxy deployment
   tolerations: []
 
-  # -- Affinity rules for the proxy deployment 
+  # -- Affinity rules for the proxy deployment
   affinity: {}
 
 # -- Service account name for the proxy deployment, if you own service-account
 serviceAccountName: ""
 
-# -- Service account settings if we create the service account 
+# -- Service account settings if we create the service account
 serviceAccount:
   # -- Creates a service account for you if true
   create: true
-  # -- Annotations for the service-account - this can be used for IRSA 
+  # -- Annotations for the service-account - this can be used for IRSA
   # auth to AWS
   annotations: {}
 
 # -- Settings for the proxy itself
 proxy:
-  # -- The SSL config for the proxy itself. SSL for individual 
+  # -- The SSL config for the proxy itself. SSL for individual
   # hosts/targets is defined below
   ssl:
     # -- If true, the proxy will enable clients to use SSL when connecting to it
-    enabled: false 
+    enabled: false
     # -- Path in the container to the proxy's SSL certificate, if proxy.certManager.enabled is true, this is ignored.
     certificatePath: ""
     # -- Path in the container to the proxy's SSL private key, if proxy.certManager.enabled is true, this is ignored.
-    keyPath: "" 
+    keyPath: ""
     # -- Path in the container to the SSL certificate for outbound connections to RDS.
     # if proxy.certManager.enabled is true, this is ignored.
     clientCertificatePath: ""
-    # -- Path in the container to the SSL private key for outbound connections to RDS. 
+    # -- Path in the container to the SSL private key for outbound connections to RDS.
     # If proxy.certManager.enabled is true, this is ignored.
     clientPrivateKey: ""
 
-  # -- Set to false if you want to bring your own certificate 
+  # -- Set to false if you want to bring your own certificate
   certManager:
-    # -- If true, creates client SSL certificates using certManager. Client certificates are 
-    # used in the sessions with RDS instances. If proxy.ssl.enabled is also true, this will 
-    # issue a self-signed certificate for communication between clients and the proxy server. 
-    enabled: false 
+    # -- If true, creates client SSL certificates using certManager. Client certificates are
+    # used in the sessions with RDS instances. If proxy.ssl.enabled is also true, this will
+    # issue a self-signed certificate for communication between clients and the proxy server.
+    enabled: false
 
   # -- Tags used to filter RDS instances. If empty, all RDS postgres instances are allowed to connect
-  # through the proxy unless otherwise blocked.  If multiple tags are set, allowed tags must be on 
+  # through the proxy unless otherwise blocked.  If multiple tags are set, allowed tags must be on
   # the RDS instance, and their values must match the value exactly.
   allowedRDSTags: []
     #  - name: rds_proxy_enabled
     #    value: true
 
-  # -- Tags used to filter RDS instances. If empty, all RDS postgres instances are allowed to connect 
+  # -- Tags used to filter RDS instances. If empty, all RDS postgres instances are allowed to connect
   # through the proxy. If multiple tags are set, ANY matching tag on the RDS instance will stop the
   # proxy connecting to it.
   blockedRDSTags: []
-    # -- ({ "name": { "host": string, "ssl": { "mode": "disable" }}}) Additional databases that you want the proxy to allow connections to, like self-hosted postgres 
+    # -- ({ "name": { "host": string, "ssl": { "mode": "disable" }}}) Additional databases that you want the proxy to allow connections to, like self-hosted postgres
   # instances.
   targets: {}
     # in-cluster-postgres:
     #   host: in-cluster-postgres:5432
-    #   ssl:  
+    #   ssl:
     #     mode: "disable"
-
