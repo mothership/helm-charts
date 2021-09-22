@@ -1,0 +1,160 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "deployment": {
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "type": "object"
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "pullPolicy": {
+                            "type": "string"
+                        },
+                        "pullSecrets": {
+                            "type": "array"
+                        },
+                        "repository": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "nodeSelector": {
+                    "type": "object"
+                },
+                "podSecurityContext": {
+                    "type": "object"
+                },
+                "replicaCount": {
+                    "type": "integer"
+                },
+                "resources": {
+                    "type": "object"
+                },
+                "securityContext": {
+                    "type": "object"
+                },
+                "tolerations": {
+                    "type": "array"
+                }
+            }
+        },
+        "fullnameOverride": {
+            "type": "string"
+        },
+        "nameOverride": {
+            "type": "string"
+        },
+        "proxy": {
+            "type": "object",
+            "properties": {
+                "allowedRDSTags": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["name", "value"],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "blockedRDSTags": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["name", "value"],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "certManager": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "ssl": {
+                    "type": "object",
+                    "properties": {
+                        "certificatePath": {
+                            "type": "string"
+                        },
+                        "clientCertificatePath": {
+                            "type": "string"
+                        },
+                        "clientPrivateKey": {
+                            "type": "string"
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "keyPath": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "targets": {
+                    "type": "object",
+                    "additionalProperties": {
+                       "type": "object",
+                       "required": ["ssl", "host"],
+                       "properties": {
+                            "host": {
+                                "type": "string"
+                            },
+                            "ssl": {
+                                "type": "object",
+                                "required": ["mode"],
+                                "properties": {
+                                    "clientCertificatePath": {
+                                        "type": "string"
+                                    },
+                                    "clientPrivateKey": {
+                                        "type": "string"
+                                    },
+                                    "mode": {
+                                        "type": "string",
+                                        "enum": ["disable", "require", "verify-full", "verify-ca"]
+                                    }
+                                }
+                            }
+                        }
+                    } 
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "additionalProperties": {
+                       "type": "string"
+                    }
+                },
+                "create": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "serviceAccountName": {
+            "type": "string"
+        }
+    }
+}
