@@ -65,6 +65,8 @@ serviceAccount:
 
 # -- Settings for the proxy itself
 proxy:
+  # -- The port used for the postgres protocol
+  port: 8000
   # -- The SSL config for the proxy itself. SSL for individual
   # hosts/targets is defined below
   ssl:

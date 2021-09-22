@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
           ports:
             - name: postgres 
-              containerPort: 8000 
+              containerPort: {{ .Values.proxy.port }}
               protocol: TCP
           volumeMounts:
             - name: config
