@@ -7,6 +7,7 @@ metadata:
 data:
   config.yaml: |-
     proxy:
+      listen_addr: 0.0.0.0:{{ .Values.proxy.port }}
       ##
       # SSL Config
       #
