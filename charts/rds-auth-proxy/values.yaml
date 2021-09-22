@@ -48,14 +48,14 @@ deployment:
   # -- Affinity rules for the proxy deployment
   affinity: {}
 
-# -- Service account name for the proxy deployment, if you own service-account
+# -- Service account name for the proxy deployment, if you own service account
 serviceAccountName: ""
 
 # -- Service account settings if we create the service account
 serviceAccount:
   # -- Creates a service account for you if true
   create: true
-  # -- Annotations for the service-account - this can be used for IRSA
+  # -- Annotations for the service account - this can be used for IRSA
   # auth to AWS
   annotations: {}
   # -- List of image pull secrets for the service account
