@@ -48,6 +48,9 @@
         "nameOverride": {
             "type": "string"
         },
+        "clusterName": {
+            "type": "string"
+        },
         "proxy": {
             "type": "object",
             "properties": {

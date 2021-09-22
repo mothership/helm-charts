@@ -6,7 +6,7 @@ metadata:
 spec:
   dnsNames:
     - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc
-    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.{{ .Values.clusterName }}
   issuerRef:
     kind: Issuer
     name: {{ include "app.fullname" . }}
@@ -20,7 +20,7 @@ metadata:
 spec:
   dnsNames:
     - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc
-    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+    - {{ include "app.fullname" . }}.{{ .Release.Namespace }}.svc.{{.Values.clusterName}}
   issuerRef:
     kind: Issuer
     name: {{ include "app.fullname" . }}

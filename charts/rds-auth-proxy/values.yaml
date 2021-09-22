@@ -1,5 +1,7 @@
 nameOverride: ""
 fullnameOverride: ""
+# -- DNS name of the cluster
+clusterName: "cluster.local"
 
 # -- Deployment resource settings
 deployment:

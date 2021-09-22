@@ -16,6 +16,7 @@ A two-layer proxy for connecting into RDS postgres databases based on IAM authen
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| clusterName | string | `"cluster.local"` | DNS name of the cluster |
 | deployment | object | `{"affinity":{},"image":{"pullPolicy":"IfNotPresent","pullSecrets":[],"repository":"ghcr.io/mothership/rds-auth-proxy:0.0.1"},"nodeSelector":{},"podSecurityContext":{},"replicaCount":1,"resources":{},"securityContext":{},"tolerations":[]}` | Deployment resource settings |
 | deployment.affinity | object | `{}` | Affinity rules for the proxy deployment |
 | deployment.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the proxy |
