@@ -15,5 +15,5 @@ jobs:
       - name: Lint 
         uses: wtag/helm-lint-action@master
         with:
-          chart_directory: charts 
+          chart_directory: charts/rds-auth-proxy 
           chart_name: rds-auth-proxy
