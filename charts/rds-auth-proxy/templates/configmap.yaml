@@ -17,11 +17,11 @@ data:
         enabled: {{ .Values.proxy.ssl.enabled }}
       {{- if .Values.proxy.certManager.enabled }}
       {{- if .Values.proxy.ssl.enabled -}}
-        certificate: /server-tls/cert.pem 
-        private_key: /server-tls/key.pem 
+        certificate: /server-tls/tls.crt
+        private_key: /server-tls/tls.key
         {{- end }}
-        client_certificate: /client-tls/client_cert.pem
-        client_private_key: /client-tls/client_private_key.pem 
+        client_certificate: /client-tls/tls.crt
+        client_private_key: /client-tls/tls.key
       {{ else }}
         {{- if .Values.proxy.ssl.enabled -}}
         certificate: {{ .Values.proxy.ssl.certificatePath }}
