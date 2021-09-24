@@ -1,0 +1,28 @@
+{{- if .Values.rbac.create }}
+{{- $portforwardName := include "rbac.name" (dict "name" (include "app.fullname" .) "postfix" "allow-portforward") }}
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ $portforwardName }}
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+rules:
+- apiGroups: [""]
+  resources: ["pods/portforward"]
+  verbs: ["create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+{{- if .Values.rbac.portforwardSubjects }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ $portforwardName }}
+subjects: {{- .Values.rbac.portforwardSubjects | toYaml | nindent 2}}
+roleRef:
+  kind: Role
+  name: {{ include "app.fullname" . | trunc 48 | trimSuffix "-" }}:allow-portforward
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
+{{- end }}

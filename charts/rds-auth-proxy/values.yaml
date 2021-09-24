@@ -63,6 +63,17 @@ serviceAccount:
   # -- List of image pull secrets for the service account
   imagePullSecrets: []
 
+# -- RBAC settings
+rbac:
+  # -- If true, creates a role/rolebinding that gives pod listing and
+  # port-forward permissions in the release namespace
+  create: false
+  # -- ([{ "kind": "Group", "name": "developers", "apiGroup": "rbac.authorization.k8s.io" }]) List of subjects to grant port-forward access to.
+  portforwardSubjects: []
+    # - kind: Group
+    #   name: system:authenticated
+    #   apiGroup: rbac.authorization.k8s.io
+
 # -- Settings for the proxy itself
 proxy:
   # -- The port used for the postgres protocol

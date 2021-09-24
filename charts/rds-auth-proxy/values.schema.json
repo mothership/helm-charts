@@ -2,6 +2,31 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "rbac": {
+            "type": "object",
+            "properties": {
+                "create": {
+                    "type": "boolean"
+                },
+                "portforwardSubjects": {
+                    "type":  "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "apiGroup": {
+                                "type": "string"
+                            },
+                            "kind": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "deployment": {
             "type": "object",
             "properties": {

@@ -1,6 +1,6 @@
 # rds-auth-proxy
 
-![Version: 0.0.5](https://img.shields.io/badge/Version-0.0.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A two-layer proxy for connecting into RDS postgres databases based on IAM authentication.
 
@@ -43,6 +43,9 @@ A two-layer proxy for connecting into RDS postgres databases based on IAM authen
 | proxy.ssl.enabled | bool | `false` | If true, the proxy will enable clients to use SSL when connecting to it |
 | proxy.ssl.keyPath | string | `""` | Path in the container to the proxy's SSL private key, if proxy.certManager.enabled is true, this is ignored. |
 | proxy.targets | object | `{}` | ({ "name": { "host": string, "ssl": { "mode": "disable" }}}) Additional databases that you want the proxy to allow connections to, like self-hosted postgres instances. |
+| rbac | object | `{"create":false,"portforwardSubjects":[]}` | RBAC settings |
+| rbac.create | bool | `false` | If true, creates a role/rolebinding that gives pod listing and port-forward permissions in the release namespace |
+| rbac.portforwardSubjects | list | `[]` | ([{ "kind": "Group", "name": "developers", "apiGroup": "rbac.authorization.k8s.io" }]) List of subjects to grant port-forward access to. |
 | serviceAccount | object | `{"annotations":{},"create":true,"imagePullSecrets":[]}` | Service account settings if we create the service account |
 | serviceAccount.annotations | object | `{}` | Annotations for the service account - this can be used for IRSA auth to AWS |
 | serviceAccount.create | bool | `true` | Creates a service account for you if true |
