@@ -27,8 +27,8 @@ spec:
         {{- toYaml .Values.deployment.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          command: ["/bin/rds-proxy"]
-          args: ["cluster", "--configfile", "/etc/config/config.yaml"]
+          command: ["/bin/rds-auth-proxy"]
+          args: ["server", "--configfile", "/etc/config/config.yaml"]
           securityContext:
             {{- toYaml .Values.deployment.securityContext | nindent 12 }}
           image: {{ .Values.deployment.image.repository }}
