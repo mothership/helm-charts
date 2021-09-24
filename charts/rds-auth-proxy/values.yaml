@@ -9,7 +9,7 @@ deployment:
   replicaCount: 1
   image:
     # -- If you want to bundle your own proxy distribution, you can change the image/tag
-    repository: ghcr.io/mothership/rds-auth-proxy:0.0.1
+    repository: ghcr.io/mothership/rds-auth-proxy:0.1.0
     # -- Image pull policy for the proxy
     pullPolicy: IfNotPresent
     # -- Image pull policy for the proxy deployment
