@@ -63,7 +63,7 @@ Create the name of the service account to use
 {{- end -}}
 
 {{/*
-Cert annotations 
+Cert helpers 
 */}}
 {{- define "app.certAnnotation" -}}
 cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "app.certName" . }}
@@ -76,3 +76,13 @@ cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/{{ include "app.certNam
 {{- define "app.serverCertName" -}}
 {{- printf "%s-server" (include "app.fullname" .) | trunc 63 -}}
 {{- end -}}
+
+{{/*
+RBAC helpers
+*/}}
+{{- define "rbac.name" -}}
+{{- $len := int (sub 63 (add1 (len .name))) -}}
+{{ printf "%s:%s" (.name | trunc $len | trimSuffix "-") .postfix }}
+{{- end -}}
+
+
