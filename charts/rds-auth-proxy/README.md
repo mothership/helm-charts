@@ -1,6 +1,6 @@
 # rds-auth-proxy
 
-![Version: 0.0.6](https://img.shields.io/badge/Version-0.0.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.0.7](https://img.shields.io/badge/Version-0.0.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.1](https://img.shields.io/badge/AppVersion-0.1.1-informational?style=flat-square)
 
 A two-layer proxy for connecting into RDS postgres databases based on IAM authentication.
 
@@ -17,11 +17,11 @@ A two-layer proxy for connecting into RDS postgres databases based on IAM authen
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | clusterName | string | `"cluster.local"` | DNS name of the cluster |
-| deployment | object | `{"affinity":{},"image":{"pullPolicy":"IfNotPresent","pullSecrets":[],"repository":"ghcr.io/mothership/rds-auth-proxy:0.1.0"},"nodeSelector":{},"podSecurityContext":{},"replicaCount":1,"resources":{},"securityContext":{},"tolerations":[]}` | Deployment resource settings |
+| deployment | object | `{"affinity":{},"image":{"pullPolicy":"IfNotPresent","pullSecrets":[],"repository":"ghcr.io/mothership/rds-auth-proxy:0.1.1"},"nodeSelector":{},"podSecurityContext":{},"replicaCount":1,"resources":{},"securityContext":{},"tolerations":[]}` | Deployment resource settings |
 | deployment.affinity | object | `{}` | Affinity rules for the proxy deployment |
 | deployment.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy for the proxy |
 | deployment.image.pullSecrets | list | `[]` | Image pull policy for the proxy deployment |
-| deployment.image.repository | string | `"ghcr.io/mothership/rds-auth-proxy:0.1.0"` | If you want to bundle your own proxy distribution, you can change the image/tag |
+| deployment.image.repository | string | `"ghcr.io/mothership/rds-auth-proxy:0.1.1"` | If you want to bundle your own proxy distribution, you can change the image/tag |
 | deployment.nodeSelector | object | `{}` | Node selector, if you want to deploy it to a particular node group |
 | deployment.podSecurityContext | object | `{}` | Pod security context |
 | deployment.replicaCount | int | `1` | Number of pods to run |
