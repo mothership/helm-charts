@@ -1,5 +1,5 @@
 {{- if .Values.proxy.certManager.enabled }}
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ include "app.clientCertName" . }}
@@ -13,7 +13,7 @@ spec:
   secretName: {{ include "app.clientCertName" . }} 
 ---
 {{ if .Values.proxy.ssl.enabled }}
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ include "app.serverCertName" . }}
@@ -27,7 +27,7 @@ spec:
   secretName: {{ include "app.serverCertName" . }} 
 ---
 {{- end }}
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: {{ include "app.fullname" . }}
