@@ -29,12 +29,7 @@ spec:
         ports:
         - name: metrics
           containerPort: {{ .Values.prometheus.port }}
-        resources:
-          limits:
-            memory: 200Mi
-          requests:
-            cpu: 100m
-            memory: 200Mi
+        resources: {{ .Values.resources | toYaml | nindent 10 }}
         volumeMounts:
         - name: varlog
           mountPath: /var/log

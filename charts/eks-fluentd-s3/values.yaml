@@ -20,3 +20,10 @@ k8s:
   ca_file: ''
 fluent_image: 'gomothership/eks-fluentd-s3:latest'
 tolerations: []
+
+resources:
+  limits:
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 200Mi
