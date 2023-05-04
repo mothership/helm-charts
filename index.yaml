@@ -3,6 +3,16 @@ entries:
   eks-fluentd-s3:
   - apiVersion: v1
     appVersion: 0.0.5
+    created: "2023-05-04T20:19:10.863670723Z"
+    description: A Helm chart for fluentd on EKS
+    digest: 322963005c57473ab40d4b0ad28ee1d19b7ffe5024913354c161bfe6452dd6e5
+    name: eks-fluentd-s3
+    type: application
+    urls:
+    - https://github.com/mothership/helm-charts/releases/download/eks-fluentd-s3-0.1.11/eks-fluentd-s3-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v1
+    appVersion: 0.0.5
     created: "2021-08-28T00:00:28.967838335Z"
     description: A Helm chart for fluentd on EKS
     digest: cdd307b3496c08c0498ead8c3954485a33d24a5180c009e1773bb34f112a2d4f
@@ -228,4 +238,4 @@ entries:
     urls:
     - https://github.com/mothership/helm-charts/releases/download/rds-auth-proxy-0.0.1/rds-auth-proxy-0.0.1.tgz
     version: 0.0.1
-generated: "2022-10-31T20:01:13.399432905Z"
+generated: "2023-05-04T20:19:10.863833624Z"
